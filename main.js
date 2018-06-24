@@ -20,21 +20,20 @@ app.on('activate', function() {
 })
 
 // コンテンツ読み込み
-function createWindow() {
-  mainWindow = 
-    new BrowserWindow({
-      width: 800,
-      height: 600,
-    })
+function createWindow () {
+  mainWindow = new BrowserWindow({
+    width: 600,
+    height: 400
+  })
 
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true,
   }))
-
-  // ウィンドウが閉じる際の処理
-  mainWindow.on('closed', function() {
+  // mainWindow.webContents.openDevTools()
+  // ウィンドウが閉じるときの処理
+  mainWindow.on('closed', function () {
     mainWindow = null
   })
 }

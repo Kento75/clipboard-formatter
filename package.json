@@ -19,5 +19,8 @@
     "electron": "^2.0.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
+  },
+  "dependencies": {
+    "photon": "git+https://github.com/connors/photon.git"
   }
 }

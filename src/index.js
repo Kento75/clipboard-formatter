@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { clipboard } from 'electron'
+const {clipboard} = require('electron')
 
 // コンポーネントを定義
 export default class App extends Component {
   constructor (props) {
     super(props)
-
+    // 状態を初期化
     this.state = {
       text: '',
       isActive: false,
       zen2han: true
     }
-
+    // クリップボード監視用タイマーをセット
     setInterval(e => this.tick(), 1000)
   }
-
+  // 全角英数を半角英数に変換する
   convToHalfWidth (str) {
     const s2 = str.replace(/[！-～]/g, e => {
       return String.fromCharCode(e.charCodeAt(0) - 0xFEE0)

@@ -1,8 +1,8 @@
+// Reactを変換するためのWebpackの設定ファイル
 const path = require('path')
 const webpack = require('webpack')
-
 // 変換対象から除外するモジュール
-const externalPlugins = new webpack.ExtendedAPIPlugin('commonjs', [
+const externalPlugins = new webpack.ExternalsPlugin('commonjs', [
   'app',
   'auto-updater',
   'browser-window',
@@ -21,31 +21,32 @@ const externalPlugins = new webpack.ExtendedAPIPlugin('commonjs', [
   'clipboard',
   'crash-reporter',
   'screen',
-  'shell',
+  'shell'
 ])
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, 'src', 'index.js'),
+    index: path.join(__dirname, 'src', 'index.js')
   },
   output: {
     path: path.join(__dirname, 'out'),
-    filename: '[name].js',
+    filename: '[name].js'
   },
-  devtool: 'cheap-module-eval-soure-map',
+  devtool: 'cheap-module-eval-source-map',
   target: 'node',
   module: {
     rules: [
       {
         test: /.js$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react'],
-        },
-      },
+          presets: ['es2015', 'react']
+        }
+      }
     ]
   },
   plugins: [
-    externalPlugins,
-  ],
+    externalPlugins
+  ]
 }
